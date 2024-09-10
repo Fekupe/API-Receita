@@ -14,7 +14,7 @@ class Recipe (models.Model):
     tempopreparo = models.DurationField(blank=True, null=False)
     categoria = models.CharField(max_length=80)
     autor = models.ForeignKey(User, blank=False, null=False, on_delete=models.CASCADE)
-    datacriacao = models.DateTimeField(blank=False, null=False)
+    datacriacao = models.DateField(blank=False, null=False)
     publi_priva = models.BooleanField(null=False)
 
 class Rating (models.Model):
