@@ -1,8 +1,7 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
-class User (models.Model):
-    nome = models.CharField(max_length=80, blank=False, null=False, unique=True)
 
 class Category (models.Model):
     classificacao = models.CharField(max_length=80)
