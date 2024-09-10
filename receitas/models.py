@@ -8,17 +8,17 @@ class Category (models.Model):
 
 class Recipe (models.Model):
     titulo = models.CharField(max_length=255, unique=True)
-    descricao = models.TextField(blank=False, null=False)
-    ingredientes = models.TextField(blank=False, null=False)
-    modopreparo = models.TextField(blank=False, null=False)
-    tempopreparo = models.DurationField(blank=False, null=False)
+    descricao = models.TextField(blank=True, null=False)
+    ingredientes = models.TextField(blank=True, null=False)
+    modopreparo = models.TextField(blank=True, null=False)
+    tempopreparo = models.DurationField(blank=True, null=False)
     categoria = models.CharField(max_length=80)
     autor = models.ForeignKey(User, blank=False, null=False, on_delete=models.CASCADE)
     datacriacao = models.DateTimeField(blank=False, null=False)
     publi_priva = models.BooleanField(null=False)
 
 class Rating (models.Model):
-    receita = models.ForeignKey(Recipe, blank=False, null=False, on_delete=models.CASCADE)
-    usuario = models.ForeignKey(User,blank=False, null=False, on_delete=models.CASCADE)
+    receita = models.ForeignKey(Recipe, blank=True, null=False, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(User,blank=True, null=False, on_delete=models.CASCADE)
     nota = models.IntegerField()
-    comentario = models.CharField(max_length=255, blank=True, null=True)
+    comentario = models.CharField(max_length=255, blank=False, null=True)
