@@ -14,6 +14,10 @@ class RecipeSerializers(serializers.ModelSerializer):
 
 class CategoriaSerializers(serializers.ModelSerializer):
 	categoria = serializers.SerializerMethodField()
+
+	def  get_categoria(self, obj):
+		return obj.categoria
+
 	class Meta: 
 		model = Recipe
-		fields = ['__all__']
+		fields = ['categoria']

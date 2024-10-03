@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from receitas.views import RecipeViewSet, CategoriaViewSet
+from receitas.views import RecipeViewSet, CategoriaViewSet, CategoriaRecipesViewSet
 from rest_framework import routers
 
 router = routers.DefaultRouter()
@@ -27,6 +27,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('recipes/', include(router.urls)),  # existing URL pattern
     path('recipes/filter/', RecipeViewSet.as_view({'get': 'list'}), name='recipe-filter'),  # new URL pattern
-    path('categorias/', CategoriaViewSet.as_view({'get': 'list'})),
-    #path('', include(router.urls))
+    path('categorias/', CategoriaViewSet.as_view({'get': 'list'}), name='categoria-list'),
+    path('', include(router.urls)),
+    path('categorias/recipes/', CategoriaRecipesViewSet.as_view({'get': 'list'}), name='categoria-recipes'),
+
 ]

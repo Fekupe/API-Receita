@@ -23,9 +23,19 @@ class CategoriaViewSet(viewsets.ModelViewSet):
 	serializer_class = CategoriaSerializers
 	filter_backends = [SearchFilter]
 	search_fields = ['categoria']
-
+     
 	def get_queryset(self):
-		categoria = self.request.GET.get('categoria')
-		if categoria:
-			return Recipe.objects.filter(categoria=categoria)
-		return Recipe.objects.all
+          queryset = super().get_queryset()
+          categoria = self.request.query_params.get('categoria')
+          if categoria:
+               queryset = queryset.filter(categoria=categoria)
+          return queryset 
+     
+class CategoriaRecipesViewSet(viewsets.ModelViewSet):
+     serializer_class = RecipeSerializers
+
+     def  get_queryset(self):
+          categoria = self.request.query_params.get('categoria')
+          if categoria:
+               return Recipe.objects.filter(categoria=categoria)
+          return Recipe.objects.all()
